@@ -1,6 +1,6 @@
 <?php
 /**
- * Prospects
+ * RealEstateProduct
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * Prospects Class Doc Comment
+ * RealEstateProduct Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Prospects implements ModelInterface, ArrayAccess
+class RealEstateProduct implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Prospects implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Prospects';
+    protected static $swaggerModelName = 'RealEstateProduct';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,8 @@ class Prospects implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        
+        'title' => 'string',
+        'type' => 'string'
     ];
 
     /**
@@ -66,7 +67,8 @@ class Prospects implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        
+        'title' => null,
+        'type' => null
     ];
 
     /**
@@ -96,7 +98,8 @@ class Prospects implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'title' => 'title',
+        'type' => 'type'
     ];
 
     /**
@@ -105,7 +108,8 @@ class Prospects implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        
+        'title' => 'setTitle',
+        'type' => 'setType'
     ];
 
     /**
@@ -114,7 +118,8 @@ class Prospects implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        
+        'title' => 'getTitle',
+        'type' => 'getType'
     ];
 
     /**
@@ -158,8 +163,27 @@ class Prospects implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const TYPE_RESIDENTIAL = 'residential';
+    const TYPE_COMMERCIAL = 'commercial';
+    const TYPE_INDUSTRIAL = 'industrial';
+    const TYPE_LAND = 'land';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_RESIDENTIAL,
+            self::TYPE_COMMERCIAL,
+            self::TYPE_INDUSTRIAL,
+            self::TYPE_LAND,
+        ];
+    }
     
 
     /**
@@ -177,6 +201,8 @@ class Prospects implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -186,7 +212,15 @@ class Prospects implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($this->container['type'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -199,13 +233,71 @@ class Prospects implements ModelInterface, ArrayAccess
      */
     public function valid()
     {
-        if (!parent::valid()) {
+
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($this->container['type'], $allowedValues)) {
             return false;
         }
-
         return true;
     }
 
+
+    /**
+     * Gets title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string $title title
+     *
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($type) && !in_array($type, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *

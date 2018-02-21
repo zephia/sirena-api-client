@@ -1,6 +1,6 @@
 <?php
 /**
- * SavingPlanLead
+ * RetailLead
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * SavingPlanLead Class Doc Comment
+ * RetailLead Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SavingPlanLead implements ModelInterface, ArrayAccess
+class RetailLead implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class SavingPlanLead implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'SavingPlanLead';
+    protected static $swaggerModelName = 'RetailLead';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -79,7 +79,7 @@ class SavingPlanLead implements ModelInterface, ArrayAccess
         'company' => 'string',
         'store' => 'string',
         'agent' => 'string',
-        'product' => '\Swagger\Client\Model\SavingPlanProduct'
+        'product' => '\Swagger\Client\Model\Product'
     ];
 
     /**
@@ -880,7 +880,7 @@ class SavingPlanLead implements ModelInterface, ArrayAccess
     /**
      * Gets product
      *
-     * @return \Swagger\Client\Model\SavingPlanProduct
+     * @return \Swagger\Client\Model\Product
      */
     public function getProduct()
     {
@@ -890,7 +890,7 @@ class SavingPlanLead implements ModelInterface, ArrayAccess
     /**
      * Sets product
      *
-     * @param \Swagger\Client\Model\SavingPlanProduct $product product
+     * @param \Swagger\Client\Model\Product $product product
      *
      * @return $this
      */
